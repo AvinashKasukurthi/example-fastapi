@@ -1,0 +1,13 @@
+[Unit]
+Description=demo fastapi app
+After=network.target
+
+[Service]
+User=avinash
+Group=avinash
+WorkingDirectory=/home/avinash/app/src
+Environment="PATH=/home/avinash/app/venv/bin"
+ExecStart=/home/avinash/app/venv/bin/gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app --bind 0.0.0.0/8000
+
+[Install]
+WantedBy=multi-user.target
